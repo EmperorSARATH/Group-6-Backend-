@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -25,13 +26,29 @@ public class User {
 
     @NotNull(message = "Pls Enter Password!")
     private String password;
+  //  private  boolean loggedIn;
 
-    @NotNull(message = "Pls Enter role")
-    private String role;
+//    @NotNull(message = "Pls Enter role")
+//    private String role;
 
-    public User(String username, String password, String role) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        //this.loggedIn = false;
+//        this.role = role;
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof User)) return false;
+//        User user = (User) o;
+//        return Objects.equals(username, user.username) &&
+//                Objects.equals(password, user.password);
+//    }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, username, password, loggedIn);
+//    }
 }
