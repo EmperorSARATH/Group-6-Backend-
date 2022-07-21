@@ -11,7 +11,6 @@ import com.example.healthcare.dao.AppointmentRepository;
 import com.example.healthcare.dao.DiagnosticCenterRepository;
 import com.example.healthcare.dao.DiagnosticTestRepository;
 import com.example.healthcare.dao.PatientRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +30,12 @@ public class AppointmentServiceImpl implements AppointmentService{
     private PatientService patientService;
     private  DiagnosticTestService diagnosticTestService;
 
+
+
+    @Override
+    public List<Appointment> getAllAppointments() {
+        return appointmentrepository.findAll();
+    }
     @Override
     public Appointment addAppointment(Appointment appointment)
     {
@@ -62,7 +67,6 @@ public class AppointmentServiceImpl implements AppointmentService{
 
         appointmentrepository.save(appointment1);
         return appointment1;
-
     }
 
 //    @Override
@@ -82,16 +86,28 @@ public class AppointmentServiceImpl implements AppointmentService{
         List<Appointment> appointments1=appointments.stream().filter(appointment -> appointment.isApprovalStatus()==status).filter(appointment -> appointment.getTestResults().equals(diagnosticTestRepository.findByTestName(test))).collect(Collectors.toList());
         return appointments1;
     }
-    public Appointment removeAppointment(Appointment appointment)
-    {
-        Optional<Appointment> appointmentOptional=appointmentrepository.findById(appointment.getId());
-        if(appointmentOptional.isPresent()) {
-            appointmentrepository.deleteById(appointment.getId());
-            return appointment;
-        }
-        else{
-            return null;
-        }
+//    public Appointment removeAppointment(Appointment appointment)
+//    {
+//        Optional<Appointment> appointmentOptional=appointmentrepository.findById(appointment.getId());
+//        if(appointmentOptional.isPresent()) {
+//            appointmentrepository.deleteById(appointment.getId());
+//            return appointment;
+//        }
+//        else{
+//            return null;
+//        }
+//    }
+
+
+
+    @Override
+    public List<Appointment> removeAppointment(Integer id) {
+        Appointment ac = null;
+        Optional<Appointment> optionalAppointment = appointmentrepository.findById(id);
+        if (optionalAppointment.isPresent())
+            ac = optionalAppointment.get();
+        appointmentrepository.deleteById(id);
+        return appointmentrepository.findAll();
     }
 
     @Override

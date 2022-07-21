@@ -23,7 +23,6 @@ public class TestResult {
 
     @OneToOne(targetEntity = Appointment.class, cascade = CascadeType.ALL)
     @JoinColumn (name = "ap_res", referencedColumnName = "id")
-    @JsonIgnore
     private Appointment appointment;
 }
 

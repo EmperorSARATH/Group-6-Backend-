@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Slf4j
 @RestController
@@ -37,19 +35,35 @@ public class AppointmentController {
 //        return appointmentService.viewAppointments(patientName);
 //    }
 
-    @DeleteMapping("/delete by id")
-    public ResponseEntity<Appointment> removeAppointment(@RequestBody Appointment appointment)
-    {
-        Appointment appointments=appointmentService.removeAppointment(appointment);
-        return new ResponseEntity<>(appointments,HttpStatus.NO_CONTENT);
-    }
-    @GetMapping("/view/{id}")
-    public ResponseEntity<Optional<Appointment>> viewAppointment(@PathVariable  int id)
-    {
+//    @DeleteMapping("/delete-by-id")
+//    public ResponseEntity<Appointment> removeAppointment(@RequestBody Appointment appointment)
+//    {
+//        Appointment appointments=appointmentService.removeAppointment(appointment);
+//        return new ResponseEntity<>(appointments,HttpStatus.NO_CONTENT);
+//    }
+//    @GetMapping("/view/{id}")
+//    public ResponseEntity<Optional<Appointment>> viewAppointment(@PathVariable  int id)
+//    {
+//
+//        Optional<Appointment> appointments =appointmentService.viewAppointment(id);
+//        return new ResponseEntity<>(appointments,HttpStatus.UPGRADE_REQUIRED);
+//    }
 
-        Optional<Appointment> appointments =appointmentService.viewAppointment(id);
-        return new ResponseEntity<>(appointments,HttpStatus.UPGRADE_REQUIRED);
+
+    @DeleteMapping("/remove/{id}")
+    public List<Appointment> removeAppointment(@PathVariable Integer id)
+    {
+        return appointmentService.removeAppointment(id);
     }
+
+
+    @GetMapping("/getall")
+    public ResponseEntity<List<Appointment>> getAllAppointments()
+    {
+        return ResponseEntity.ok(this.appointmentService.getAllAppointments());
+
+    }
+
     @PutMapping ("/update")
     public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment)
     {

@@ -8,6 +8,7 @@ import com.example.healthcare.service.DiagnosticCenterService;
 import com.example.healthcare.service.DiagnosticTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,8 @@ public class DiagnosticCenterController {
     @PostMapping("/add")
     public ResponseEntity<DiagnosticCenter> add(@RequestBody DiagnosticCenter diagnosticCenter)
     {
-        return ResponseEntity.ok(this.diagnosticCenterService.addDiagnosticCenter(diagnosticCenter));
+    DiagnosticCenter diagnostic= diagnosticCenterService.addDiagnosticCenter(diagnosticCenter);
+     return new ResponseEntity<>(diagnostic, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/getall")

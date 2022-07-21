@@ -1,5 +1,6 @@
 package com.example.healthcare.service;
 
+import com.example.healthcare.entities.DiagnosticCenter;
 import com.example.healthcare.exception.UserNotFoundException;
 import com.example.healthcare.entities.User;
 import com.example.healthcare.dao.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,5 +54,10 @@ public class UserServiceImpl implements UserService {
             return user;
         } else
             return null;
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return userRepository.findAll();
     }
 }

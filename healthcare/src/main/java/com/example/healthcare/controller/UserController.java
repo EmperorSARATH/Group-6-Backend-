@@ -1,6 +1,7 @@
 package com.example.healthcare.controller;
 import com.example.healthcare.Status;
 import com.example.healthcare.dao.UserRepository;
+import com.example.healthcare.entities.DiagnosticCenter;
 import com.example.healthcare.entities.User;
 //import com.example.healthcare.service.PatientService;
 import com.example.healthcare.service.UserServiceImpl;
@@ -77,12 +78,18 @@ public class UserController {
             String name=other.getUsername();
             String pass= other.getPassword();
             if (name.equals(user.getUsername()) && pass.equals(user.getPassword())) {
-                userRepository.save(user);
                 ResponseEntity<List<User>> listResponseEntity = new ResponseEntity<>(users, HttpStatus.ACCEPTED);
                 return listResponseEntity;
             }
         }
         return new ResponseEntity<>(users, HttpStatus.FORBIDDEN);
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<List<User>> getAllUser()
+    {
+        return ResponseEntity.ok(this.userService.getAllUser());
+
     }
 
     @DeleteMapping("/remove")

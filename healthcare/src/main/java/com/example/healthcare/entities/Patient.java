@@ -1,6 +1,7 @@
 package com.example.healthcare.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,12 +30,12 @@ public class Patient {
     @NotNull(message="Please enter your age")
     private Integer age;
 
-    @NotNull(message="Please enter the gender")
+  @NotNull(message="Please enter the gender")
     private String gender;
 
     @OneToOne(targetEntity = Appointment.class, cascade = CascadeType.ALL)
     @JoinColumn(name ="", referencedColumnName = "id")
-
+    @JsonIgnore
     private List<Appointment> AppointmentList;
 
     public Patient(String name, String phoneNo, Integer age, String gender) {

@@ -10,6 +10,8 @@ import java.util.Set;
 @Service
 
 public interface AppointmentService {
+
+    public List<Appointment> getAllAppointments();
     public Appointment addAppointment(Appointment appointment);
 
     public Set<Appointment>  viewAppointments(String patientName);
@@ -20,7 +22,9 @@ public interface AppointmentService {
 
     public List<Appointment> getAppointmentList(int centreid,String test,boolean status);
 
-    public Appointment removeAppointment(Appointment appointment);
+//    public Appointment removeAppointment(Appointment appointment);
+
+    public List<Appointment> removeAppointment(Integer id);
 
 
     public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException;

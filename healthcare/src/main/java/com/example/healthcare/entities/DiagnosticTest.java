@@ -34,11 +34,12 @@ public class DiagnosticTest {
     @JsonIgnore
     private Set<DiagnosticCenter> diagnosticCenters;
 
-    public DiagnosticTest(String normalValue, String testName, double testPrice, String units){
+    public DiagnosticTest(String normalValue, String testName, double testPrice, String units,Set diagnosticCenters ){
         this.normalValue = normalValue;
         this.testName = testName;
         this.testPrice = testPrice;
         this.units = units;
+        this.diagnosticCenters=diagnosticCenters;
     }
 
 }
