@@ -111,7 +111,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     }
 
     @Override
-    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException {
+    public Appointment addAppointment(int patientId, int testCenterid, int testId, String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException {
         System.out.println(patientId);
         System.out.println(testCenterid);
         System.out.println(testId);
@@ -126,8 +126,8 @@ public class AppointmentServiceImpl implements AppointmentService{
        appointment.setApprovalStatus(false);
        appointment.setPatient((Set<Patient>) patient);
        appointment.setDate(date);
-      // appointment.setDiagnosticCenter((Set<DiagnosticCenter>) diagnosticCenter);
-       //appointment.setDiagnosticTests((Set<DiagnosticTest>) diagnosticTest);
+      appointment.setDiagnosticCenter((Set<DiagnosticCenter>) diagnosticCenter);
+       appointment.setDiagnosticTests(diagnosticTest);
         System.out.println(appointment.toString());
        appointmentrepository.save(appointment);
        return appointment;

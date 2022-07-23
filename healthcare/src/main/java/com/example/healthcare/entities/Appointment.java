@@ -30,7 +30,7 @@ public class Appointment {
     @OneToOne(targetEntity = DiagnosticTest.class, cascade = CascadeType.ALL)
     @JoinColumn (name = "diat_apmt", referencedColumnName = "id")
 
-   private Set<DiagnosticTest> diagnosticTests;
+   private DiagnosticTest diagnosticTests;
 
     @OneToMany(targetEntity = Patient.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "pat_apmt", referencedColumnName = "id")

@@ -26,6 +26,8 @@ public interface AppointmentService {
 
     public List<Appointment> removeAppointment(Integer id);
 
+    Appointment addAppointment(int patientId, int testCenterid, int testId, String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException;
 
-    public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException;
+
+    // public Appointment addAppointment(int patientId, int testCenterid, int testId,String date) throws DiagnosticTestNotFoundException, DiagnosticCenterNotFoundException;
 }

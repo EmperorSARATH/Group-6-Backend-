@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -14,18 +15,19 @@ import static javax.persistence.GenerationType.AUTO;
 @Entity
 @NoArgsConstructor
 @Table(name = "DiagnosticTest")
+
 public class DiagnosticTest {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Integer id;
-    @NotNull(message = "Please Enter Diagnostic Test Name:")
+    //@NotNull(message = "Please Enter Diagnostic Test Name:")
     private String testName;
-    @NotNull(message = "Please Enter Diagnostic Test Price:")
+    //@NotNull(message = "Please Enter Diagnostic Test Price:")
     private double testPrice;
-    @NotNull(message = "Please Enter Diagnostic Test Normal Value:")
+    //@NotNull(message = "Please Enter Diagnostic Test Normal Value:")
     private String normalValue;
 
-    @NotNull(message = "Please Enter Diagnostic Center Units:")
+   //@NotNull(message = "Please Enter Diagnostic Center Units:")
     private String units;
 
     //@NotNull(message= "Please Enter Diagnostic Test Centers:")
@@ -34,12 +36,12 @@ public class DiagnosticTest {
     @JsonIgnore
     private Set<DiagnosticCenter> diagnosticCenters;
 
-    public DiagnosticTest(String normalValue, String testName, double testPrice, String units,Set diagnosticCenters ){
-        this.normalValue = normalValue;
+    public DiagnosticTest(String testName){
+       // this.normalValue = normalValue;
         this.testName = testName;
-        this.testPrice = testPrice;
-        this.units = units;
-        this.diagnosticCenters=diagnosticCenters;
+//        this.testPrice = testPrice;
+//        this.units = units;
+//        this.diagnosticCenters=diagnosticCenters;
     }
 
 }

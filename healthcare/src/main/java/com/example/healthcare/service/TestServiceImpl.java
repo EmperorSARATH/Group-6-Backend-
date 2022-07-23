@@ -1,7 +1,9 @@
 package com.example.healthcare.service;
 
+import com.example.healthcare.entities.Appointment;
 import com.example.healthcare.entities.DiagnosticTest;
 import com.example.healthcare.dao.TestRepository;
+import com.example.healthcare.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,18 +36,39 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public DiagnosticTest removeTest(DiagnosticTest test){
-        Optional<DiagnosticTest> optionalDiagnosticTest = testRepository.findById(test.getId());
-        if(optionalDiagnosticTest.isPresent()){
-            testRepository.deleteById(test.getId());
-            return test;
-        }else {
-            return null;
-        }
-    }
-
-    @Override
     public List<DiagnosticTest> viewAllTests(){
         return testRepository.findAll();
     }
+
+    @Override
+    public DiagnosticTest removeTest(DiagnosticTest test) {
+        return null;
+    }
+
+//    @Override
+//    public DiagnosticTest removeTest(DiagnosticTest test) {
+//        Optional<DiagnosticTest> testTemp = testRepository.findById(test.getId());
+//
+//            testRepository.deleteById(test.getId());
+//
+//
+//        return test;
+//    }
+
+    public String deleteById(int id) {
+
+        String output;
+
+        try {
+            testRepository.deleteById(id);
+            output = "delete okay...";
+
+        }catch(Exception e) {
+            output = "delete not okay...";
+        }
+        return output;
+
+    }
+
+
 }

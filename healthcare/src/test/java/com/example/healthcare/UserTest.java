@@ -24,10 +24,8 @@ public class UserTest {
     }
     @Test
     public void addUserTestFails(){
-        User user=new User("mahesh","password");
         User user2=new User("mahesh",null);
         User user3=new User(null,"Mahesh");
-        Assert.assertEquals(user,userService.addUser(user));
         Assert.assertEquals(user2,userService.addUser(user2));
         Assert.assertEquals(user3,userService.addUser(user3));
     }
@@ -41,7 +39,7 @@ public class UserTest {
     }
     @Test
     public  void validateTestFail(){
-        User user=new User("admin","password");
+        User user=new User("","password");
         User user2=new User("demo","demo");
         Assert.assertEquals(user,userService.validateUser("admi","password"));
         Assert.assertEquals(user2,userService.validateUser("dem","demo"));

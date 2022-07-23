@@ -1,7 +1,5 @@
 package com.example.healthcare.controller;
-import com.example.healthcare.Status;
 import com.example.healthcare.dao.UserRepository;
-import com.example.healthcare.entities.DiagnosticCenter;
 import com.example.healthcare.entities.User;
 //import com.example.healthcare.service.PatientService;
 import com.example.healthcare.service.UserServiceImpl;
@@ -38,10 +36,20 @@ public class UserController {
 
     @ApiOperation("Add a new  User")
     @PostMapping("/register")
-    public ResponseEntity<User> regsiterUser(@Valid @RequestBody User user) {
-        User userNew = userService.addUser(user);
-        log.info("Added a new User");
-        return new ResponseEntity<>(userNew, HttpStatus.CREATED);
+    public User regsiterUser(@Valid @RequestBody User user) throws Exception{
+
+        User local=this.userRepository.findByUsername(user.getUsername());
+
+        if(local!=null)
+        {
+            throw new Exception("user already present");
+        }
+        else {
+            local = this.userRepository.save(user);
+
+            local = this.userRepository.save(user);
+        }
+        return local;
     }
 
 //    @PostMapping("/login")

@@ -25,26 +25,26 @@ public class DiagnosticCenter {
     private Integer id;
     @NotNull(message = "Please Enter Diagnostic Center Name:")
     private String name;
-    @NotNull(message = "Please Enter Diagnostic Center Contact Number:")
+    //@NotNull(message = "Please Enter Diagnostic Center Contact Number:")
     private String contactNo;
-    @NotNull(message = "Please Enter Diagnostic Center Address:")
+   // @NotNull(message = "Please Enter Diagnostic Center Address:")
     private String address;
-    @NotNull(message = "Please Enter Diagnostic Center Email:")
+    //@NotNull(message = "Please Enter Diagnostic Center Email:")
     private String email;
 
     @ElementCollection
+    @JsonIgnore
     private List<String> servicesOffered;
 
     @OneToMany(targetEntity = DiagnosticTest.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "ct_fk", referencedColumnName = "id")
-    @JsonIgnore
     private Set<DiagnosticTest> tests;
 
-    public DiagnosticCenter(String name, String contactNo, String address, String email) {
+    public DiagnosticCenter(String name) {
         this.name=name;
-        this.contactNo=contactNo;
-        this.address=address;
-        this.email=email;
+//        this.contactNo=contactNo;
+//        this.address=address;
+//        this.email=email;
     }
 
 }

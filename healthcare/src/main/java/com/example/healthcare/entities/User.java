@@ -21,6 +21,7 @@ public class User {
     private Integer id;
     @Size(min = 2, max = 20)
     @NotNull(message = "Pls Enter User Name!")
+
     private String username;
     @Size(min = 2, max = 20)
 

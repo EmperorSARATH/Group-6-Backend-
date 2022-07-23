@@ -1,6 +1,10 @@
 package com.example.healthcare.controller;
 
+import com.example.healthcare.entities.Appointment;
+import com.example.healthcare.entities.DiagnosticCenter;
 import com.example.healthcare.entities.DiagnosticTest;
+import com.example.healthcare.entities.User;
+import com.example.healthcare.service.DiagnosticTestService;
 import com.example.healthcare.service.TestService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +22,8 @@ import java.util.List;
 public class TestController {
     @Autowired
     private TestService testService;
+    @Autowired
+    private DiagnosticTestService diagnosticTestService;
 
     @ApiOperation("add test")
     @PostMapping("/addtest")
@@ -35,12 +41,25 @@ public class TestController {
         return new ResponseEntity<>(updateTest,HttpStatus.ACCEPTED);
     }
 
-    @ApiOperation("delete test")
-    @DeleteMapping("/removetest")
-    public ResponseEntity<DiagnosticTest> removeTest(@Valid @RequestBody DiagnosticTest test){
-        DiagnosticTest deleteTest = testService.removeTest(test);
-        log.info("Remove test");
-        return new ResponseEntity<>(deleteTest,HttpStatus.NO_CONTENT);
+//    @ApiOperation("delete test")
+//    @DeleteMapping("/removetest")
+//    public ResponseEntity<DiagnosticTest> removeTest(@Valid @RequestBody DiagnosticTest test){
+//        DiagnosticTest deleteTest = testService.removeTest(test);
+//        log.info("Remove test");
+//        return new ResponseEntity<>(deleteTest,HttpStatus.ACCEPTED);
+//    }
+
+//    @DeleteMapping("/remove")
+//    public ResponseEntity<DiagnosticTest> removeTest(@RequestBody DiagnosticTest test) {
+//        DiagnosticTest testRemoved = testService.removeTest(test);
+//
+//            return new ResponseEntity<>(test, HttpStatus.ACCEPTED);
+//    }
+
+
+    @DeleteMapping("/deleteDataById/{id}")
+    public String deleteDataById(@PathVariable int id) {
+        return testService.deleteById(id);
     }
 
     @ApiOperation("view all the test")
